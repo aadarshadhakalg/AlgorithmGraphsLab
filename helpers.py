@@ -31,16 +31,13 @@ def density(G: nx.Graph) -> float:
 #------------------------------------------------------------#
 
 def clustering_coefficient(G: nx.Graph,  i:int) -> float:
-    neighbours = G.neighbors(i)
+    neighbours = [n for n in G.neighbors(i)]
     no_of_neighbours = len(list(neighbours))
 
-    sub_graph: nx.Graph = nx.Graph()
- 
-    sub_graph.add_nodes_from(neighbours)
+
+    sub_graph: nx.Graph =  G.subgraph(neighbours)
     
     num_connections = sub_graph.number_of_edges()
-
-    print(num_connections)
 
     if(no_of_neighbours > 1):
         return (2*num_connections)/ (no_of_neighbours*(no_of_neighbours-1))
@@ -57,6 +54,6 @@ def average_clustering_coefficient(G:nx.Graph):
     clustering_coefficients = []
     for node in range(1,53):
         clustering_coefficients.append(clustering_coefficient(G=G, i=node))
-    print(clustering_coefficients)
+    return sum(clustering_coefficients)/len(clustering_coefficients)
 
 

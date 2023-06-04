@@ -63,3 +63,4 @@ print("Diameter: ",Dia)
 #------------------------------------------------------------#
 
 Dia  =  average_clustering_coefficient(G)
+print("Average Clustering Coefficient: ",Dia)
