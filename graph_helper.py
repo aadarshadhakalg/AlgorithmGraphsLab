@@ -24,7 +24,15 @@ class GraphHelper:
         if nx.is_connected(self.G):
             return nx.algorithms.distance_measures.diameter(self.G)
         else:
-            return "Disconnected"
+            components = list(nx.connected_components(self.G))
+            max_diameter = 0
+            for component in components:
+                subgraph = self.G.subgraph(component)
+                diameter = nx.algorithms.distance_measures.diameter(subgraph)
+                if diameter > max_diameter:
+                    max_diameter = diameter
+
+            return max_diameter
 
     #------------------------------------------------------------#
     #--------------- Average Degree calculation -----------------#
@@ -74,6 +82,26 @@ class GraphHelper:
     def average_clustering_coefficient(self) -> float:
         clustering_coefficients =  self.clustering_coefficient()
         return sum(clustering_coefficients.values()) / len(clustering_coefficients)
+    
+
+
+    def save_degree_distribution(self, name:str):
+        degree_sequence = sorted([d for n, d in self.G.degree()], reverse=True)
+        degree_count = {}
+        for degree in degree_sequence:
+            degree_count[degree] = degree_count.get(degree, 0) + 1
+
+        # Plot the degree distribution
+        degrees = list(degree_count.keys())
+        counts = list(degree_count.values())
+
+        plt.figure(figsize=(10, 6))
+        plt.bar(degrees, counts)
+        plt.xlabel("Degree")
+        plt.ylabel("Count")
+        plt.title("Degree Distribution")
+        plt.savefig(name)
+
     
 
     def save_graph(self, name:str):
