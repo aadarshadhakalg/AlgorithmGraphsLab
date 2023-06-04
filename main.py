@@ -1,66 +1,41 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+from tabulate import tabulate
 
-from helpers import average_clustering_coefficient, average_degree, density, diameter
+from graph_helper import GraphHelper
 
 #------------------------------------------------------------#
 #--------- Lab 5: Using Graph Libraries in Python -----------#
 #------------------------------------------------------------#
+aves_sparrpw_social: GraphHelper = GraphHelper("networks/smallnetworks/aves-sparrow-social.edges",data=(("weight", float),("year",int),))
+aves_sparrpw_social.save_graph("output/aves_sparrpw_social.png")
+print("No of Nodes: " , str(aves_sparrpw_social.G.number_of_nodes()))
+print("No of Edges: " , str(aves_sparrpw_social.G.number_of_edges()))
+print("Average degree: ", aves_sparrpw_social.average_degree())
+print("Density: ",aves_sparrpw_social.density())
+print("Diameter: ",aves_sparrpw_social.diameter())
+print("Average Clustering Coefficient: ",aves_sparrpw_social.average_clustering_coefficient())
 
-
-
-# Load the .graph file
-filename = "aves-sparrow-social.edges"
-fh = open(filename, "rb")
-
-# Data Format :  node1 node2 weight year
-G: nx.Graph = nx.edgelist.read_edgelist(fh,nodetype=int,data=(("weight", float),("year",int),))
-
-# Close file
-fh.close()
-
-# Draw graph using the matplotlib library
-nx.draw(G, with_labels=True, node_color='lightblue', edge_color='gray')
-plt.savefig("graph.png")
-
+print("\n----------------------------------------------------\n")
 
 
 #------------------------------------------------------------#
-#----------- No of nodes and edges calculation --------------#
+#------------------- For 5 Big Networks ---------------------#
 #------------------------------------------------------------#
+bio_ce_cx: GraphHelper = GraphHelper("networks/bignetworks/bio-CE-CX.edges",data=(("weight", float),))
+# bio_ce_cx.save_graph("output/bio_ce_cx.png")
+bio_grid_fruitfly: GraphHelper = GraphHelper("networks/bignetworks/bio-grid-fruitfly.edges",delimiter=",")
+# bio_grid_fruitfly.save_graph("output/bio_grid_fruitfly.png")
+bio_grid_human: GraphHelper = GraphHelper("networks/bignetworks/bio-grid-human.edges",delimiter=",")
+# bio_grid_human.save_graph("output/bro_grid_human.png")
+bio_grid_yeast: GraphHelper = GraphHelper("networks/bignetworks/bio-grid-yeast.edges",delimiter=",")
+# bio_grid_yeast.save_graph("output/bio_grid_yeast.png")
+bio_worm_net: GraphHelper = GraphHelper("networks/bignetworks/bio-WormNet-v3.edges",data=(("weight", float),))
+# bio_worm_net.save_graph("output/bio_worm_net.png")
 
-no_of_nodes = G.number_of_nodes()
-no_of_edges = G.number_of_edges()
+all_graphs = [bio_ce_cx,bio_grid_fruitfly, bio_grid_human, bio_grid_yeast, bio_worm_net]
+data = []
+for graph in all_graphs:
+    data.append([graph.G.number_of_nodes(),graph.G.number_of_edges(),graph.average_degree(),graph.density(),graph.diameter(),graph.average_clustering_coefficient()])
 
-print("No of Nodes: " , str(no_of_nodes))
-print("No of Edges: " , str(no_of_edges))
-
-
-#------------------------------------------------------------#
-#--------------- Average Degree calculation -----------------#
-#------------------------------------------------------------#
-
-print("Average degree: ", average_degree(G))
-
-
-#------------------------------------------------------------#
-#------------------- Density Calculation --------------------#
-#------------------------------------------------------------#
-
-print("Density: ",density(G))
-
-
-#------------------------------------------------------------#
-#------------------- Diameter Calculation -------------------#
-#------------------------------------------------------------#
-
-Dia  =  diameter(G)
-print("Diameter: ",Dia)
-
-
-#------------------------------------------------------------#
-#------------ Clustering Coefficient Calculation ------------#
-#------------------------------------------------------------#
-
-Dia  =  average_clustering_coefficient(G)
-print("Average Clustering Coefficient: ",Dia)
+print(tabulate(data,headers=["Nodes","Edges","Average Degree","Density","Diameter","Clustering Coefficient"]))
