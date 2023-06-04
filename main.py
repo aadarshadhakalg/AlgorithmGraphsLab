@@ -7,6 +7,8 @@ from graph_helper import GraphHelper
 #------------------------------------------------------------#
 #--------- Lab 5: Using Graph Libraries in Python -----------#
 #------------------------------------------------------------#
+print("\n----------------------------------------------------\n")
+
 aves_sparrpw_social: GraphHelper = GraphHelper("networks/smallnetworks/aves-sparrow-social.edges",data=(("weight", float),("year",int),))
 aves_sparrpw_social.save_graph("graph/aves_sparrpw_social.png")
 print("No of Nodes: " , str(aves_sparrpw_social.G.number_of_nodes()))
@@ -32,6 +34,9 @@ bio_grid_yeast: GraphHelper = GraphHelper("networks/bignetworks/bio-grid-yeast.e
 bio_grid_yeast.save_degree_distribution("degree_distributions/bio_grid_yeast.png")
 bio_worm_net: GraphHelper = GraphHelper("networks/bignetworks/bio-WormNet-v3.edges",data=(("weight", float),))
 bio_worm_net.save_degree_distribution("degree_distributions/bio_worm_net.png")
+
+print("\n----------------------------------------------------\n")
+
 
 all_graphs = [bio_ce_cx,bio_grid_fruitfly, bio_grid_human, bio_grid_yeast, bio_worm_net]
 data = []

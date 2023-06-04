@@ -24,15 +24,16 @@ class GraphHelper:
         if nx.is_connected(self.G):
             return nx.algorithms.distance_measures.diameter(self.G)
         else:
-            components = list(nx.connected_components(self.G))
-            max_diameter = 0
-            for component in components:
-                subgraph = self.G.subgraph(component)
-                diameter = nx.algorithms.distance_measures.diameter(subgraph)
-                if diameter > max_diameter:
-                    max_diameter = diameter
+            return "Disconnected"
+            # components = list(nx.connected_components(self.G))
+            # max_diameter = 0
+            # for component in components:
+            #     subgraph = self.G.subgraph(component)
+            #     diameter = nx.algorithms.distance_measures.diameter(subgraph)
+            #     if diameter > max_diameter:
+            #         max_diameter = diameter
 
-            return max_diameter
+            # return max_diameter
 
     #------------------------------------------------------------#
     #--------------- Average Degree calculation -----------------#

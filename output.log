@@ -1,0 +1,28 @@
+
+----------------------------------------------------
+
+Graph Loaded:  networks/smallnetworks/aves-sparrow-social.edges
+No of Nodes:  52
+No of Edges:  454
+Average degree:  17.46153846153846
+Density:  0.34238310708898945
+Diameter:  3
+Average Clustering Coefficient:  0.7186959385181153
+
+----------------------------------------------------
+
+Graph Loaded:  networks/bignetworks/bio-CE-CX.edges
+Graph Loaded:  networks/bignetworks/bio-grid-fruitfly.edges
+Graph Loaded:  networks/bignetworks/bio-grid-human.edges
+Graph Loaded:  networks/bignetworks/bio-grid-yeast.edges
+Graph Loaded:  networks/bignetworks/bio-WormNet-v3.edges
+
+----------------------------------------------------
+
+  Nodes    Edges    Average Degree      Density  Diameter        Clustering Coefficient
+-------  -------  ----------------  -----------  ------------  ------------------------
+  15229   245952          32.3005   0.00212112   Disconnected                 0.211165
+   7274    24894           6.84465  0.000941104  Disconnected                 0.0286623
+   9436    31182           6.60916  0.000700494  Disconnected                 0.109428
+   6008   156945          52.2453   0.00869741   5                            0.17361
+  16347   762822          93.3287   0.00570957   Disconnected                 0.193913
