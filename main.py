@@ -1,7 +1,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
-from helpers import average_clustering_coefficient, average_degree, density, clustering_coefficient
+from helpers import average_clustering_coefficient, average_degree, density, diameter
 
 #------------------------------------------------------------#
 #--------- Lab 5: Using Graph Libraries in Python -----------#
@@ -54,7 +54,7 @@ print("Density: ",density(G))
 #------------------- Diameter Calculation -------------------#
 #------------------------------------------------------------#
 
-Dia  =  nx.algorithms.distance_measures.diameter(G)
+Dia  =  diameter(G)
 print("Diameter: ",Dia)
 
 
